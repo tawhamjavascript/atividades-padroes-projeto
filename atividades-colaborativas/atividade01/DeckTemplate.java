@@ -3,10 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class DeckTemplate {
+public abstract class DeckTemplate{
    protected List<Card> deck; // ArrayList usado como uma pilha de objetos
    protected int number_of_cards = 52; // n�mero constante de Cards
    protected Random randomNumbers; // gerador de n�mero aleat�rio
+   
 
    // construtor preenche baralho de cartas
    public DeckTemplate() {
@@ -25,18 +26,22 @@ public abstract class DeckTemplate {
     editDeck();
 
     editDeckValues();
-    
-
-
-
+   
 
    } // fim do construtor DeckOfCards
+
+   public DeckTemplate(DeckTemplate deckTemplate) {
+      this.deck = new ArrayList<Card>();
+      for (Card card: deckTemplate.deck) {
+         this.deck.add((Card) card.clone());
+      }
+      this.number_of_cards = deckTemplate.number_of_cards;
+      this.randomNumbers = deckTemplate.randomNumbers;
+   }
 
    public abstract void editDeck();
 
    public abstract void editDeckValues();
-
-   
 
    public boolean hasCard() {
 	   return deck.size() > 0;
@@ -74,6 +79,7 @@ public abstract class DeckTemplate {
 	  }
       return s;
    }
+
 } // fim da classe DeckOfCards
 
 

@@ -3,13 +3,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DeckSueca extends DeckTemplate {
+public class DeckSueca extends DeckTemplate implements Prototype {
 
     private String nipeTrump;
     
     public DeckSueca() {
         super();
+        createTrump();
     
+    }
+
+    public DeckSueca(DeckSueca deckSueca) {
+        super(deckSueca);
+        this.nipeTrump = deckSueca.nipeTrump;
     }
 
     private void createTrump() {
@@ -52,5 +58,9 @@ public class DeckSueca extends DeckTemplate {
                 card.setValue(0);
             }
         });
-    }    
+    }  
+    
+    public Prototype clone() {
+        return new DeckSueca(this);
+    }
 }

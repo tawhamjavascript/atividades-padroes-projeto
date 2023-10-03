@@ -1,6 +1,6 @@
 // Classe Card representa uma carta de baralho.
 
-public class Card {
+public class Card implements Prototype {
    private String face; // face da carta ("Ace", "Deuce", ...)
    private String suit; // naipe da carta ("Hearts", "Diamonds", ...)
    private int value;
@@ -11,6 +11,12 @@ public class Card {
       suit = cardSuit; // inicializa naipe da carta
       value = cardValue;
    } // fim do construtor Card de dois argumentos
+
+   public Card(Card card) {
+      this.face = card.face;
+      this.suit = card.suit;
+      this.value = card.value;
+   }
    
    // retorna representa��o String de Card
    public String toString() {                                      
@@ -34,6 +40,10 @@ public class Card {
       this.value = value;
    }
 
+   public Prototype clone() {
+      // TODO Auto-generated method stub
+      return new Card(this);
+   }
 } // fim da classe Card
 
 

@@ -21,6 +21,10 @@ public class DeckOfCardsTest {
          //   myDeckOfCards.dealCard(), myDeckOfCards.dealCard() );
       } // for final
       System.out.println( "Size: " + myDeckOfCards.size());
+
+      DeckSueca deckSueca = new DeckSueca();
+      deckSueca.clone();
+   
       
    } // fim de main
 } // fim da classe DeckOfCardsTest
