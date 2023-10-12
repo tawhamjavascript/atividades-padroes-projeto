@@ -1,0 +1,71 @@
+@startuml "diagrama de classes"
+
+
+abstract class State {
+    #time: Integer
+    #nome: String
+    #tipo: String
+
+    +{abstract} changeState(): void
+    +{abstract} time(): Integer
+    +{abstract} nextState(): State 
+
+
+}
+
+class Red extends State {
+    +changeState(): void
+    +time(): Integer
+    +nextState(): State 
+}
+
+class Orange extends State {
+    +changeState(): void
+    +time(): Integer
+    +nextState(): State 
+}
+
+class Green extends State {
+    +changeState(): void
+    +time(): Integer
+    +nextState(): State 
+}
+
+class Semafaro {
+    - state: State
+    - numTombamento: Integer
+
+    +getState(): State
+    +setState(state: State): void
+    +efetuarTransicao(): void
+    +getNumTombamento(): Integer
+    +setNumTombamento(numTombamento: Integer): void
+    +getEstadoAtual(): State
+    +resetStateSemafaro()
+    +setup(Sinal: Sinal,novo_tempo_transicao: int): void
+    +exibir():void
+    +showVisorRegressivo():void
+    +start():void
+    +toString():String
+
+}
+
+Semafaro *-- State
+
+
+
+
+
+enum Sinal {
+    VERMELHO
+    AMARELO
+    VERDE
+
+}
+
+
+Orange --> Sinal
+Red --> Sinal
+Green --> Sinal
+
+@enduml
