@@ -4,7 +4,7 @@ import java.util.List;
 public class Course {
     private String name;
     private Double price;
-    private int maxStudents = 1;
+    private int maxStudents = 10;
     private List<Student> students = new ArrayList<Student>();
 
     public Course(String name, Double price) {
