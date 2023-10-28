@@ -10,26 +10,39 @@ public class OnHold implements State {
         this.context = context;
     }
 
-    
-
     public void changeState() {
         context.setState(new Identified(context));
     }
 
-    public String validate(List<String> input) {
-        String matricula = input.get(0);
-        if(matricula.matches("\\d{11}")) {
-            context.setStudent(new Student(matricula));
-            changeState();
+    public boolean validateRegistration(String matricula) {
 
-            return "Matricula válida";        
-        } else {
-            return "Matricula inválida";
+        RepositoryStudents repositoryStudents = RepositoryStudents.getInstance();
+        context.setStudent(matricula);
+
+        if (repositoryStudents.contains(matricula)) {
+            changeState();
+            return true;
+        } 
+        else {
+            return false;
         }
     }
 
-    public List<String> input() {
-        return new ArrayList<String>(Arrays.asList("Digite sua matricula: "));
-        
+
+    public boolean validateCourse(String course) throws Exception {
+
+        throw new UnsupportedOperationException("Não pode validar curso no estado emEspera");
     }
+
+    public boolean validateCreditCard(CreditCard card) throws Exception {
+    
+        throw new UnsupportedOperationException("Não pode validar cartão no estado emEspera");
+    }
+
+    public String createTicket() throws Exception {
+     
+        throw new UnsupportedOperationException("Não pode criar ticket no estado emEspera");
+    }
+
+    
 }

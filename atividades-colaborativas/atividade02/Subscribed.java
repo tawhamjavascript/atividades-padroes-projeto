@@ -12,20 +12,22 @@ public class Subscribed implements State {
         context.setState(new Finished(context));
     }
 
+    public boolean validateRegistration(String input) throws Exception{
+        throw new UnsupportedOperationException("Você já inseriu a matrícula");
+    }
 
+    public boolean validateCourse(String course) throws Exception {
+        throw new UnsupportedOperationException("Não é possível validar o curso no estado de inscrito");
+    }
 
-    public String validate(List<String> input) {
-        context.getCourse().addStudent(context.getStudent());
+    public boolean validateCreditCard(CreditCard card) throws Exception{
+        throw new UnsupportedOperationException("Não é possível validar o cartão de crédito no estado de inscrito");
+    }
+
+    public String createTicket() {
         changeState();
-        return  "Aluno - " + context.getStudent().getRegistrationId() + '\n' +
-                "Curso - " + context.getCourse().getName() + '\n' +
-                "Valor - " + context.getCourse().getPrice() + '\n' +
-                "Status - " + "Inscrito";
+        return "" + context.getCourse().getName();
+        
     }
 
-    @Override
-    public List<String> input() {
-        // TODO Auto-generated method stub
-        return new ArrayList<String>();
-    }
 }

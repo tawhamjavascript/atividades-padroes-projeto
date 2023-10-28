@@ -4,8 +4,8 @@ import java.util.List;
 public class Course {
     private String name;
     private Double price;
-    private int maxStudents = 10;
-    private List<Student> students = new ArrayList<Student>();
+    private int maxStudents = 1;
+    private List<String> students = new ArrayList<String>();
 
     public Course(String name, Double price) {
         this.name = name;
@@ -21,7 +21,7 @@ public class Course {
         return price;
     }
 
-    public boolean addStudent(Student student) {
+    public boolean addStudent(String student) {
         boolean result = students.contains(student);
         if(!result) {
             students.add(student);
@@ -29,7 +29,7 @@ public class Course {
         return result; 
     }
 
-    public List<Student> getStudents() {
+    public List<String> getStudents() {
         return students;
     }
 

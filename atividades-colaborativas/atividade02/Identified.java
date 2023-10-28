@@ -15,46 +15,39 @@ public class Identified implements State {
         context.setState(new Processing(context));
     }
 
-    public String validate(List<String> input) {
-        String nomeCurso = input.get(0);
-        switch (nomeCurso) {
-            case "1":
-                nomeCurso = "ChatGPT em detalhes";
-                break;
 
-            case "2":
-                nomeCurso = "BlockChain";
-                break;
-        
-            case "3":
-                nomeCurso = "Realidade virtual";
-                break;
-
-            default:
-                nomeCurso = "Iot";
-        }
-
-        RepositoryCourse repositoryCourse = RepositoryCourse.getInstance();
-        Course course = repositoryCourse.getCourse(nomeCurso);
-        if (course.getStudents().size() < course.getMaxStudents()) {
-            changeState();
-            context.setCourse(course);
-            return "Curso com vagas disponíveis";
-
-        } else {
-            return "Curso sem vagas disponíveis";
-        }
+    public boolean validateRegistration(String matricula) throws Exception {
+        throw new UnsupportedOperationException("Você já está identificado");
     }
 
-
-    public List<String> input() {
-        StringBuilder result = new StringBuilder();
-        int i = 0;
-        for(Map.Entry<String, Course> curso : context.repositoryCourse.getCourses().entrySet()) {
-            i++;
-            result.append("numeração do curso: " + i + " " + curso.getKey() + " vagas Disponíveis: " + (curso.getValue().getMaxStudents() - curso.getValue().getStudents().size()) + "\n");  
+    public boolean validateCourse(String course) throws Exception {
+        RepositoryCourse repositoryCourses = RepositoryCourse.getInstance();
+        Map<String, Course> courses = repositoryCourses.getCourses();
+        if (courses.containsKey(course)) {
+            Course courseObj = courses.get(course);
+            if (courseObj.getStudents().size() < courseObj.getMaxStudents()) {
+                changeState();
+                context.setCourse(courseObj);
+                courseObj.addStudent(context.getStudent());
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        result.append("Digite o número do curso: ");
-        return new ArrayList<String>(Arrays.asList(result.toString()));
+
+        return false;
+        
+    }
+
+    public boolean validateCreditCard(CreditCard card) throws Exception {
+
+        throw new UnsupportedOperationException("Não pode validar cartão no estado Identificado");
+    }
+
+   
+    public String createTicket() throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Não pode criar ticket no estado Identificado");
     }
 }

@@ -9,10 +9,10 @@ public class RepositoryCourse {
     private RepositoryCourse () {
         if (courses == null) {
             courses = new HashMap<String, Course>();
-            courses.put("ChatGPT em detalhes", new Course("ChatGPT em detalhes", 100.00));
-            courses.put("BlockChain", new Course("BlockChain",90.00));
-            courses.put("Iot", new Course("Iot", 80.00));
-            courses.put("Realidade virtual", new Course("Realidade virtual", 70.00));
+            courses.put("GPT", new Course("GPT", 100.00));
+            courses.put("BLOCKCHAIN", new Course("BLOCKCHAIN",90.00));
+            courses.put("IOT", new Course("IOT", 80.00));
+            courses.put("VR", new Course("VR", 70.00));
         }
 
     }

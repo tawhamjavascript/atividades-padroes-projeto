@@ -13,14 +13,21 @@ public class Finished implements State {
         context.setState(new OnHold(context));
     }
     
-    public String validate(List<String> input) {
-        changeState();
-        return "Inscrição finalizada! \n";
-
+    public boolean validateRegistration(String input) throws Exception {
+        throw new UnsupportedOperationException("Você já inseriu a matrícula");
     }
 
-    public List<String> input() {
-        return new ArrayList<String>();
-        
+    public boolean validateCreditCard(CreditCard card) throws Exception {
+        throw new UnsupportedOperationException("Não é possível validar o cartão de crédito no estado de finalizado");
+    }
+
+    public boolean validateCourse(String course) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateCourse'");
+    }
+
+
+    public String createTicket() throws Exception {
+        throw new UnsupportedOperationException("Ticket já foi criado");
     }
 }
